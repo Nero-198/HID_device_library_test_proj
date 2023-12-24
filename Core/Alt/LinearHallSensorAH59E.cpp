@@ -5,17 +5,19 @@
  *      Author: iroen
  */
 
-#include <LinearHallSensorAH59E.h>
+#include "LinearHallSensorAH59E.h"
 
 
 LinearHallSensor_AH59E::LinearHallSensor_AH59E(ADC_HandleTypeDef* hadc)
 : m_hadc(hadc) // コンストラクタイニシャライザでメンバ変数を初期化
 {
     // 必要に応じて、ここでADCの追加設定や初期化を行う
-	  if (HAL_ADCEx_Calibration_Start(m_hadc) !=  HAL_OK)	//ADCを自動でキャリぶれーとしてくれる
+	  /*
+	  if (HAL_ADCEx_Calibration_Start(m_hadc) !=  HAL_OK)	//ADCを自動でキャリぶれーとしてくれる//STM32F407の場合、HAL_ADCEx_Calibration_Start(&hadc1)が無い。
 	  {
 	    Error_Handler();
 	  }
+	  */
 }
 
 LinearHallSensor_AH59E::~LinearHallSensor_AH59E() {

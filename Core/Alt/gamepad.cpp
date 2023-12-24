@@ -65,7 +65,7 @@ void gamepad::set_output_key_matrix(GPIO_TypeDef* port, uint16_t pin, uint8_t ou
 	digital_input.set_output_key_matrix(port, pin, output_num);
 }
 
-uint8_t gamepad::SendUSB(USBD_HandleTypeDef *pdev, gamepad::gamepadHID_t *gamepadHID, uint16_t len){
+uint8_t gamepad::SendUSB(USBD_HandleTypeDef *pdev, gamepadHID_t *gamepadHID, uint16_t len){
 	uint8_t *report = (uint8_t *)gamepadHID;
 	return (USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS, report, len));
 }

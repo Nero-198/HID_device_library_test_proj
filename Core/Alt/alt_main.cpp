@@ -11,7 +11,7 @@
  * 参照:https://kleinembedded.com/cpp-and-stm32cubemx-code-generation/
  */
 /*main.c と同じIncludeを行う。*/
-#include <LinearHallSensorAH59E.h>
+#include "LinearHallSensorAH59E.h"
 #include "main.h"
 #include "adc.h"
 #include "usart.h"
@@ -22,7 +22,7 @@
 #include "alt_main.h"
 #include <stdio.h>
 #include <usbd_customhid.h>
-#include <gamepad.h>
+#include "gamepad.h"
 
 
 int alt_main(){
@@ -34,9 +34,9 @@ int alt_main(){
 
 		//----gamepad setting----
 	gamepad gamepad;
-	gamepad.setButton(BUTTON_1_GPIO_Port, BUTTON_1_Pin, 1);		//ここでBUTTON_1はMXで設定したピン名
-	gamepad.setButton(BUTTON_2_GPIO_Port, BUTTON_2_Pin, 2);
-
+	gamepad.setButton(A0_GPIO_Port, A0_Pin, 1);		//ここでBUTTON_1はMXで設定したピン名
+	gamepad.setButton(A1_GPIO_Port, A1_Pin, 2);
+/*
 	gamepad.set_input_key_matrix(IN0_GPIO_Port, IN0_Pin, 0);
 	gamepad.set_input_key_matrix(IN1_GPIO_Port, IN1_Pin, 1);
 	gamepad.set_input_key_matrix(IN2_GPIO_Port, IN2_Pin, 2);
@@ -49,7 +49,7 @@ int alt_main(){
 		{6, 7, 8},
 		{9, 10, 0}
 	};
-
+*/
 	/* initialize ここで初期化処理等を書く  */
 	gamepad.init_gamepad();
 

@@ -13,6 +13,10 @@
 #include <usbd_customhid.h>
 #include <vector>
 
+#ifdef  CUSTOM_HID_EPIN_SIZE
+#undef  CUSTOM_HID_EPIN_SIZE
+#define CUSTOM_HID_EPIN_SIZE                         0x11U
+#endif
 
 
 class gamepad
@@ -31,6 +35,12 @@ public:
         ERROR = 1,
     }status;
 
+    typedef struct HID_gamepad_struct{
+        uint8_t buttons[BUTTONS_DATA_BUFFER_SIZE];
+        int8_t axis[NUM_of_ADC_12bit * 2];
+    }gamepadHID_t;
+
+
     //---------------func----------------
     gamepad::status init_gamepad(); //初期化関数。マトリクスの数などの設定を行う。
     //--------setter-------
@@ -42,16 +52,12 @@ public:
     //実際のアナログ入力とHID_gamepadのアナログ入力の対応付け
     void setAxis(uint8_t axis, uint8_t HID_axis); //axis = adc pin name or adc pin number
 
-    uint8_t SendUSB(USBD_HandleTypeDef *pdev, uint8_t *USBD_data_tx_buffer, uint16_t len);
+    uint8_t SendUSB(USBD_HandleTypeDef *pdev, gamepad::gamepadHID_t *USBD_data_tx_buffer, uint16_t len);
 
 private:
 
     //------------------USBD Data List------------------
     uint8_t USBD_data_tx_buffer[8]; // この配列にmemcpyして送信する。
-    typedef struct HID_gamepad_struct{
-        uint8_t buttons[BUTTONS_DATA_BUFFER_SIZE];
-        int8_t axis[NUM_of_ADC_12bit * 2];
-    }gamepadHID_t;
 
 };
 
