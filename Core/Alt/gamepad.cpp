@@ -5,7 +5,7 @@
  *      Author: iroen
  */
 
-#include <gamepad.h>
+#include <../Alt/gamepad.h>
 #include "usb_device.h"
 
 
@@ -65,7 +65,17 @@ void gamepad::set_output_key_matrix(GPIO_TypeDef* port, uint16_t pin, uint8_t ou
 	digital_input.set_output_key_matrix(port, pin, output_num);
 }
 
-uint8_t gamepad::SendUSB(USBD_HandleTypeDef *pdev, gamepadHID_t *gamepadHID, uint16_t len){
-	uint8_t *report = (uint8_t *)gamepadHID;
+void gamepad::getbutton(){
+	digital_input.readButton();
+	memcpy(USBD_data_tx_buffer, digital_input.HID_button, 2);
+}
+
+void gamepad::getaxis(){
+	uint8_t axis[6] = {0, 0 ,0 ,0 ,0 ,0};
+	memcpy(USBD_data_tx_buffer + 2, axis, 6);
+}
+
+uint8_t gamepad::SendUSB(USBD_HandleTypeDef *pdev, uint8_t *gamepadHID, uint16_t len){
+	uint8_t *report = gamepadHID;
 	return (USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS, report, len));
 }

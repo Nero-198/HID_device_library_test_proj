@@ -15,9 +15,8 @@
 
 #ifdef  CUSTOM_HID_EPIN_SIZE
 #undef  CUSTOM_HID_EPIN_SIZE
-#define CUSTOM_HID_EPIN_SIZE                         0x11U
+#define CUSTOM_HID_EPIN_SIZE                         0x08U
 #endif
-
 
 class gamepad
 {
@@ -39,6 +38,8 @@ public:
         uint8_t buttons[BUTTONS_DATA_BUFFER_SIZE];
         int8_t axis[NUM_of_ADC_12bit * 2];
     }gamepadHID_t;
+    //------------------USBD Data List------------------
+    uint8_t USBD_data_tx_buffer[8]; // この配列にmemcpyして送信する。
 
 
     //---------------func----------------
@@ -51,14 +52,13 @@ public:
 
     //実際のアナログ入力とHID_gamepadのアナログ入力の対応付け
     void setAxis(uint8_t axis, uint8_t HID_axis); //axis = adc pin name or adc pin number
+    void getbutton();
+    void getaxis();
 
-    uint8_t SendUSB(USBD_HandleTypeDef *pdev, gamepad::gamepadHID_t *USBD_data_tx_buffer, uint16_t len);
+    uint8_t SendUSB(USBD_HandleTypeDef *pdev, uint8_t *USBD_data_tx_buffer, uint16_t len);
+
 
 private:
-
-    //------------------USBD Data List------------------
-    uint8_t USBD_data_tx_buffer[8]; // この配列にmemcpyして送信する。
-
 };
 
 #endif /*GAMEPAD_H*/

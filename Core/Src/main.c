@@ -25,7 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "alt_main.h"
+#include "../Alt/alt_main.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
