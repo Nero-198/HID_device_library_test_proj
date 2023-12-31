@@ -103,6 +103,11 @@ target_link_options(
 
 target_sources(
     ${TARGET_NAME} PRIVATE
+    "Core\\Alt\\alt_main.cpp"
+    "Core\\Alt\\gamepad_analog_input_driver.cpp"
+    "Core\\Alt\\gamepad_digital_input_driver.cpp"
+    "Core\\Alt\\gamepad.cpp"
+    "Core\\Alt\\LinearHallSensorAH59E.cpp"
     "Core\\Src\\gpio.c"
     "Core\\Src\\main.c"
     "Core\\Src\\stm32f4xx_hal_msp.c"
