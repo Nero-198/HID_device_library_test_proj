@@ -4,5 +4,21 @@
   "files.associations": {
     "*.c": "c",
     "alt_main.h": "c"
-  }
+  },
+  "cSpell.words": [
+    "AHBCLK",
+    "CLOCKTYPE",
+    "HCLK",
+    "OSCILLATORTYPE",
+    "PCLK",
+    "PLLCLK",
+    "PLLM",
+    "PLLN",
+    "PLLP",
+    "PLLQ",
+    "PLLSOURCE",
+    "SYSCLK",
+    "SYSCLKSOURCE",
+    "VOLTAGESCALING"
+  ]
 }
