@@ -5,7 +5,7 @@
  *      Author: iroen
  */
 
-#include <gamepad_digital_input_driver.h>
+#include "gamepad_digital_input_driver.h"
 
 gamepad_digital_input_driver::gamepad_digital_input_driver(/* args */)
 {

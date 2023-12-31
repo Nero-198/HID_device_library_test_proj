@@ -5,7 +5,7 @@
  *      Author: iroen
  */
 
-#include <gamepad_analog_input_driver.h>
+#include "gamepad_analog_input_driver.h"
 
 gamepad_analog_input_driver::gamepad_analog_input_driver(ADC_HandleTypeDef* hadc)
 {

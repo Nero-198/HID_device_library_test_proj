@@ -65,7 +65,7 @@
 #define USBD_VID     6666
 #define USBD_LANGID_STRING     1041
 #define USBD_MANUFACTURER_STRING     "Nemuro"
-#define USBD_PID_FS     0xa003
+#define USBD_PID_FS     0xa004
 #define USBD_PRODUCT_STRING_FS     "HID_Device_debugBoard_F4VE"
 #define USBD_CONFIGURATION_STRING_FS     "Custom HID Config"
 #define USBD_INTERFACE_STRING_FS     "Custom HID Interface"
