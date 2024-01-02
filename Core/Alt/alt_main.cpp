@@ -33,7 +33,7 @@ int alt_main(){
 
 
 		//----gamepad setting----
-	gamepad gamepad;
+	gamepad gamepad(&hadc1);
 	gamepad.setButton(A0_GPIO_Port, A0_Pin, 1);		//ここでBUTTON_1はMXで設定したピン名
 	gamepad.setButton(A1_GPIO_Port, A1_Pin, 2);
 /*
@@ -56,10 +56,10 @@ int alt_main(){
 	while(1){
 		/*alt_main loop ここにメイン関数のループを書く。*/
 		printf("Value: %lu\r\n", hall_1.getVal());
-		//gamepad.getbutton();
+		gamepad.getbutton();
 		//gamepad.getaxis();
 		uint8_t Dummy_Data[8] = {0x00, 0x00, 0x00, 0x00, 0x00,0x00,0x00,0x00};
-		memcpy(gamepad.USBD_data_tx_buffer, Dummy_Data, 8);
+		memcpy(gamepad.USBD_data_tx_buffer + 2, Dummy_Data, 6);
 
 		/*USB送信*/
 		gamepad.SendUSB(&hUsbDeviceFS, gamepad.USBD_data_tx_buffer, 8);

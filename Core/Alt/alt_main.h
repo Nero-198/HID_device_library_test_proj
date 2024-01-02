@@ -10,9 +10,6 @@
 
 #include"main.h"
 
-#define NUM_of_ADC_12bit 3
-#define BUTTONS_DATA_BUFFER_SIZE 8
-
 #ifdef __cplusplus
 extern "C"
 {

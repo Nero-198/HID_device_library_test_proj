@@ -104,7 +104,7 @@ __ALIGN_BEGIN static uint8_t CUSTOM_HID_ReportDesc_FS[USBD_CUSTOM_HID_REPORT_DES
     0x81, 0x02,                    //   INPUT (Data,Var,Abs)
     0x75, 0x01,                    //   REPORT_SIZE (1)
     0x95, 0x04,                    //   REPORT_COUNT (4) - for padding
-    0x81, 0x03,                    //   INPUT (Cnst,Var,Abs) - paddin
+    0x81, 0x03,                    //   INPUT (Cnst,Var,Abs) - padding
 		0x05, 0x01,					//USAGE_PAGE (Generic Desktop)
 		0x09, 0x30,					//USAGE (X)
 		0x09, 0x31,					//USAGE (Y)
