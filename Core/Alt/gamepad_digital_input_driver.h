@@ -9,6 +9,7 @@
 #define GAMEPAD_DIGITAL_INPUT_DRIVER_H
 
 #include "main.h"
+#include "gamepad.h"
 #include "alt_main.h"
 #include <vector>
 
@@ -23,7 +24,7 @@ public:
 
     uint8_t init_gamepad_digital_input_driver(); //初期化関数。マトリクスの数などの設定を行う。
     void readButton();
-    void setButton(GPIO_TypeDef* port, uint16_t pin, uint8_t HID_button); //butoon = pin name or pin number
+    void setButton(GPIO_TypeDef* port, uint16_t pin, uint8_t HID_button); //button = pin name or pin number
     void set_input_key_matrix(GPIO_TypeDef* port, uint16_t pin, uint8_t input_num);
     void set_output_key_matrix(GPIO_TypeDef* port, uint16_t pin, uint8_t output_num);
     void set_matrix_to_HID_button(uint8_t input_num, uint8_t output_num, uint8_t HID_button);

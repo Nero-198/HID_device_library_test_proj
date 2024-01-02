@@ -3,11 +3,16 @@
   "cmake.configureOnOpen": true,
   "files.associations": {
     "*.c": "c",
-    "alt_main.h": "c"
+    "alt_main.h": "c",
+    "main.h": "c"
   },
   "cSpell.words": [
     "AHBCLK",
     "CLOCKTYPE",
+    "EPIN",
+    "getaxis",
+    "getbutton",
+    "grobal",
     "HCLK",
     "OSCILLATORTYPE",
     "PCLK",

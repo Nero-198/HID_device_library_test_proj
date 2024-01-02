@@ -7,6 +7,12 @@
 
 #ifndef GAMEPAD_H
 #define GAMEPAD_H
+//---grobal define---
+#define NUM_of_ADC_12bit 3
+#define BUTTONS_DATA_BUFFER_SIZE 8
+#define BUTTONS_EPIN_SIZE 0x02U
+#define AXIS_EPIN_SIZE 0x06U
+
 #include "main.h"
 #include "gamepad_analog_input_driver.h"
 #include "gamepad_digital_input_driver.h"
@@ -18,14 +24,13 @@
 #define CUSTOM_HID_EPIN_SIZE                         0x08U
 #endif
 
+
+
 class gamepad
 {
 public:
-    gamepad();
+    gamepad(ADC_HandleTypeDef* hadc);
     ~gamepad();
-//------------------Instance------------------
-    gamepad_digital_input_driver digital_input;
-    gamepad_analog_input_driver analog_input(ADC_HandleTypeDef* hadc);
 
 //------------------enum------------------
     typedef enum
@@ -46,7 +51,7 @@ public:
     gamepad::status init_gamepad(); //初期化関数。マトリクスの数などの設定を行う。
     //--------setter-------
     //実際のボタンとHID_gamepadのボタンの対応付け
-    void setButton(GPIO_TypeDef* port, uint16_t pin, uint8_t HID_button); //butoon = pin name or pin number
+    void setButton(GPIO_TypeDef* port, uint16_t pin, uint8_t HID_button); //button = pin name or pin number
     void set_input_key_matrix(GPIO_TypeDef* port, uint16_t pin, uint8_t input_num);
     void set_output_key_matrix(GPIO_TypeDef* port, uint16_t pin, uint8_t output_num);
 

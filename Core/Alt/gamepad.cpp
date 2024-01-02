@@ -9,8 +9,11 @@
 #include "usb_device.h"
 
 
-gamepad::gamepad()
+gamepad::gamepad(ADC_HandleTypeDef* hadc)
 {
+	//------------------Instance------------------
+    gamepad_digital_input_driver digital_input;
+    gamepad_analog_input_driver analog_input(ADC_HandleTypeDef* hadc);
 }
 
 gamepad::~gamepad()
@@ -46,8 +49,8 @@ gamepad::status gamepad::init_gamepad(){
 	{
 		for (uint8_t o = 0; o < output_num; i++)
 		{
-			HID_button = digital_input.matrix_to_HID_button[i][o];
-			digital_input.set_matrix_to_HID_button(i, o, HID_button);
+			HID_button = digital_input().matrix_to_HID_button[i][o]; // Add parentheses after digital_input
+			digital_input().set_matrix_to_HID_button(i, o, HID_button); // Add parentheses after digital_input
 		}
 	}
 	return OK;
@@ -67,12 +70,12 @@ void gamepad::set_output_key_matrix(GPIO_TypeDef* port, uint16_t pin, uint8_t ou
 
 void gamepad::getbutton(){
 	digital_input.readButton();
-	memcpy(USBD_data_tx_buffer, digital_input.HID_button, 2);
+	memcpy(USBD_data_tx_buffer, digital_input.HID_button, BUTTONS_EPIN_SIZE);
 }
 
 void gamepad::getaxis(){
 	uint8_t axis[6] = {0, 0 ,0 ,0 ,0 ,0};
-	memcpy(USBD_data_tx_buffer + 2, axis, 6);
+	memcpy(USBD_data_tx_buffer + 2, axis, AXIS_EPIN_SIZE);
 }
 
 uint8_t gamepad::SendUSB(USBD_HandleTypeDef *pdev, uint8_t *gamepadHID, uint16_t len){
